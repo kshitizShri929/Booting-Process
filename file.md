@@ -1,4 +1,7 @@
-An operating system (OS) is the low-level software that manages resources, controls peripherals, and provides basic services to other software. In Linux, there are 6 distinct stages in the typical booting process.
+# What is Booting Process in Linux?
+The boot process is a fundamental aspect of any operating system. It is the process by which the operating system loads into the computer's memory, initializes its components, and prepares to execute user applications.
+
+The Linux boot process consists of several stages that are critical to the functionality of the operating system. Let us go through the various stages of the booting process in Linux.
 
 ## 1. BIOS
 BIOS stands for Basic Input/Output System. In simple terms, the BIOS loads and executes the Master Boot Record (MBR) boot loader.
