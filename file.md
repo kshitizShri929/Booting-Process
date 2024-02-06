@@ -1,6 +1,6 @@
 An operating system (OS) is the low-level software that manages resources, controls peripherals, and provides basic services to other software. In Linux, there are 6 distinct stages in the typical booting process.
 
-1. BIOS
+## 1. BIOS
 BIOS stands for Basic Input/Output System. In simple terms, the BIOS loads and executes the Master Boot Record (MBR) boot loader.
 
 When you first turn on your computer, the BIOS first performs some integrity checks of the HDD or SSD.
@@ -9,12 +9,12 @@ Then, the BIOS searches for, loads, and executes the boot loader program, which 
 
 Once the boot loader program is detected, it's then loaded into memory and the BIOS gives control of the system to it.
 
-2. MBR
+## 2. MBR
 MBR stands for Master Boot Record, and is responsible for loading and executing the GRUB boot loader.
 
 The MBR is located in the 1st sector of the bootable disk, which is typically /dev/hda, or /dev/sda, depending on your hardware. The MBR also contains information about GRUB, or LILO in very old systems.
 
-3. GRUB
+## 3. GRUB
 Sometimes called GNU GRUB, which is short for GNU GRand Unified Bootloader, is the typical boot loader for most modern Linux systems.
 
 The GRUB splash screen is often the first thing you see when you boot your computer. It has a simple menu where you can select some options. If you have multiple kernel images installed, you can use your keyboard to select the one you want your system to boot with. By default, the latest kernel image is selected.
@@ -23,7 +23,8 @@ The splash screen will wait a few seconds for you to select and option. If you d
 
 In many systems you can find the GRUB configuration file at /boot/grub/grub.conf or /etc/grub.conf. Here's an example of a simple grub.conf file:
 
-#boot=/dev/sda
+```bash
+boot=/dev/sda
 default=0
 timeout=5
 splashimage=(hd0,0)/boot/grub/splash.xpm.gz
@@ -32,14 +33,15 @@ title CentOS (2.6.18-194.el5PAE)
       root (hd0,0)
       kernel /boot/vmlinuz-2.6.18-194.el5PAE ro root=LABEL=/
       initrd /boot/initrd-2.6.18-194.el5PAE.img
-4. Kernel
+      ```
+## 4. Kernel
 The kernel is often referred to as the core of any operating system, Linux included. It has complete control over everything in your system.
 
 In this stage of the boot process, the kernel that was selected by GRUB first mounts the root file system that's specified in the grub.conf file. Then it executes the /sbin/init program, which is always the first program to be executed. You can confirm this with its process id (PID), which should always be 1.
 
 The kernel then establishes a temporary root file system using Initial RAM Disk (initrd) until the real file system is mounted.
 
-5. Init
+## 5. Init
 At this point, your system executes runlevel programs. At one point it would look for an init file, usually found at /etc/inittab to decide the Linux run level.
 
 Modern Linux systems use systemd to choose a run level instead. According to TecMint, these are the available run levels:
@@ -57,7 +59,7 @@ Run level 6 is emulated by reboot.target (and runlevel6.target is a symbolic lin
 Emergency is matched by emergency.target.
 systemd will then begin executing runlevel programs.
 
-6. Runlevel programs
+## 6. Runlevel programs
 Depending on which Linux distribution you have installed, you may be able to see different services getting started. For example, you might catch starting sendmail …. OK.
 
 These are known as runlevel programs, and are executed from different directories depending on your run level. Each of the 6 runlevels described above has its own directory:
